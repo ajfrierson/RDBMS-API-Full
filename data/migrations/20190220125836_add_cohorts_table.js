@@ -1,6 +1,7 @@
+
 exports.up = function(knex, Promise) {
   // makes the changes to the database
-  return knex.schema.createTable('students', function(tbl) {
+  return knex.schema.createTable('cohorts', function(tbl) {
     // make changes to the table using the tbl object passed as a parameter
 
     // primary key
@@ -10,16 +11,10 @@ exports.up = function(knex, Promise) {
     tbl.string('name', 255).notNullable();
 
     tbl.timestamps(true, true);
-
-    tbl
-      .integer('cohort_id')
-      .unsigned()
-      .references('id')
-      .inTable('cohorts');
   });
 };
 
 exports.down = function(knex, Promise) {
   // undo the changes to the database (it's called rolling back changes)
-  return knex.schema.dropTableIfExists('students');
+  return knex.schema.dropTableIfExists('cohorts');
 };
